@@ -9,16 +9,6 @@ import snow from "../icons/snowflake.png"
 import lightrain from "../icons/partly_sunny_rain.png"
 import moderaterain from "../icons/rain_cloud.png"
 import heavyrain from "../icons/thunder_cloud_and_rain.png"
-import { render } from 'react-dom';
-// import DataBrowser from 'react-data-browser';
-
-
-// import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
-// import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@nextui-org/react";
-// import {NextUIProvider} from "@nextui-org/react";
-import {Card, CardHeader, CardBody, CardFooter, Button} from "@nextui-org/react";
-
-import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 
 const Weather = ({data}) => {
