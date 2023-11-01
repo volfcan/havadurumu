@@ -60,7 +60,7 @@ export default function Home() {
           <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
           <link rel={'icon'} href={"/favicon.ico"}/>
         </Head>
-          <nav className="bg-gray-800">
+          <nav className="bg-gradient-to-b from-gray-800 to-gray-600">
               <div className="flex lg:px-4 sm:px-6">
                   <div className="relative flex h-16 items-center ">
                         <div className="">
@@ -102,7 +102,11 @@ export default function Home() {
                       </div>
                   </div>
               </div>
-               <div className={'relative flex justify-between items-center max-w-[500px] w-full m-auto p-4 pb-4 text-white z-10'}>
+              <div className='flex py-12 px-4'>
+                <h1 className='font-bold text-4xl text-center text-gray-200'>15 günlük hava durumu tahminlerini ve yağış haritalarını keşfet</h1>
+              </div>
+
+               <div className={'relative flex justify-between items-center m-auto p-12 text-white z-10'}>
                           <form onSubmit={fetchWeather} className={'flex justify-between w-full items-center m-auto p-1 bg-transparent border-2 border-gray-400 text-white rounded-2xl'}>
                               <div>
                                   <input
@@ -128,17 +132,17 @@ export default function Home() {
               {/*           className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>*/}
               {/*    </div>*/}
               {/*</div>*/}
-          </nav>
-          {/*Weather*/}
-          <div className='lg:mx-auto md:mx-auto  overflow-x-auto justify-around container'>
-            {weather.data && <Weather  data={weather} /> }
-          </div>
-          <div>
-            <div className=''>
+            {/*Weather*/}
+            <div className='lg:mx-auto md:mx-auto  overflow-x-auto justify-around container'>
+              {weather.data && <Weather  data={weather} /> }
+            </div>
+            <div className='flex shadow-md rounded-lg px-4 mx-auto'>
               <iframe width="650" height="450"
                       src="https://embed.windy.com/embed2.html?lat=39.675&lon=33.658&detailLat=40.290&detailLon=29.070&width=650&height=450&zoom=6&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=12&pressure=true&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1"
                       frameBorder="0"></iframe>
             </div>
+          </nav>
+          <div>
           </div>
       </div>
   );

@@ -79,7 +79,7 @@ const Weather = ({data}) => {
         <div>
             {/*Mobile view*/}
                 <div className="grid grid-cols-1 p-4 sm:grid-cols-1 gap-4 md:hidden">
-                    <p className='text-xl font-medium'><span className='font-medium text-xl'>{city}</span>  hava durumu</p>
+                    <p className='text-xl text-gray-200 font-medium'><span className='font-medium text-xl'>{city}</span>  hava durumu</p>
                     <div className="flex bg-gray-700 items-center justify-between p-2 rounded-lg shadow-custom">
                         <div className="flex">
                             <div className='w-[105px]'>
