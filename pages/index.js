@@ -5,8 +5,6 @@ import {useState, useEffect} from "react";
 import {BsSearch} from "react-icons/bs";
 import Weather from '../components/Weather';
 import Spinner from "../public/spinner.gif";
-import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
-import { useMediaQuery } from "react-responsive";
 import React from 'react'
 
 
