@@ -9,11 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@alekna/react-data-browser": "^1.1.11",
+    "@nextui-org/react": "^2.1.13",
+    "@radix-ui/react-select": "^2.0.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "dotenv": "^16.3.1",
+    "framer-motion": "^10.16.4",
+    "lucide-react": "^0.290.0",
     "next": "^13.1.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "react-responsive": "^9.0.2",
+    "react-super-responsive-table": "^5.2.2",
+    "tailwind-merge": "^2.0.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
