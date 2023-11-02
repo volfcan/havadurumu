@@ -10,8 +10,11 @@ import lightrain from "../icons/partly_sunny_rain.png"
 import moderaterain from "../icons/rain_cloud.png"
 import heavyrain from "../icons/thunder_cloud_and_rain.png"
 
+import { useRouter} from "next/router";
 
 const Weather = ({data}) => {
+    // const router = useRouter();
+    // const {city} = router.query;
 // console.log(data)
     const dates = [];
     for (let i = 0; i < 16; i++) {
@@ -25,7 +28,7 @@ const Weather = ({data}) => {
     for (let i = 0; i < 16; i++) {
         const temp = Math.trunc(data.data.list[i].temp.max);
         tempday.push(temp);
-        
+
     }
 
     const tempnight = [];
@@ -229,7 +232,7 @@ const Weather = ({data}) => {
                                 <a className="pr-4 text-gray-50 text-xs font-bold hover:underline">{dates[4]}</a>
                             </div>
                              <div className="max-w-[24px]">
-                                {description[0] === "sky is clear" && <Image src={sun} alt='sun-icon'/> || description[4] === "light rain" && <Image src={lightrain} alt='rain-cloud-sun-icon'/> || description[4] === "moderate rain" && <Image src={moderaterain} alt='rain-cloud-icon'/> || description[4] === "heavy intensity rain" && <Image src={heavyrain} alt='rain-cloud-icon'/> || description[4] === "overcast clouds" && <Image src={cloud} alt="cloud-sun"/> || description[4] === "broken clouds" && <Image src={midcloud} alt="cloud-sun"/> || description[4] === "scattered clouds" && <Image src={fewcloud} alt="sun"/> || description[4] === "few clouds" && <Image src={fewcloud} alt="sun-cloud-icon"/> ||  description[4] === "Snow" && <Image className="w-3/4" src={snow} alt="snow-icon"/>}
+                                {description[4] === "sky is clear" && <Image src={sun} alt='sun-icon'/> || description[4] === "light rain" && <Image src={lightrain} alt='rain-cloud-sun-icon'/> || description[4] === "moderate rain" && <Image src={moderaterain} alt='rain-cloud-icon'/> || description[4] === "heavy intensity rain" && <Image src={heavyrain} alt='rain-cloud-icon'/> || description[4] === "overcast clouds" && <Image src={cloud} alt="cloud-sun"/> || description[4] === "broken clouds" && <Image src={midcloud} alt="cloud-sun"/> || description[4] === "scattered clouds" && <Image src={fewcloud} alt="sun"/> || description[4] === "few clouds" && <Image src={fewcloud} alt="sun-cloud-icon"/> ||  description[4] === "Snow" && <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                             </div>
                             <div className='pl-4'>
                                 <span
@@ -784,45 +787,7 @@ const Weather = ({data}) => {
             </div>
         </div>
     )
-        // )
-        // <div className={'relative flex flex-col justify-between max-w-[500px] w-full h-[90vh] m-auto p-4 text-gray-300 z-10 '}>
-        //     {/*-----------------------*/}
-        //     {/*Top*/}
-        //     {/*-----------------------*/}
-        //     <div className={'relative flex justify-between pt-12'}>
-        //         <div className={'flex flex-col items-center'}>
-        //             <Image
-        //                 src={`https://openweathermap.org/img/wn/${data.data.list[0].weather[0].icon}@2x.png`}
-        //                 alt='/'
-        //                 width={100}
-        //                 height={100}
-        //                 />
-        //             <p className={'text-2xl'}>{data.data.list[0].temp.day}</p>
-        //         </div>
-        //         {/*<p className={'text-9xl'}>{data.main.temp.toFixed(0)}&#176;</p>*/}
-        //     </div>
-        //     {/*-----------------------*/}
-        //             {/*Bottom*/}
-        //     {/*-----------------------*/}
-        //     {/*<div className={'bg-black/20 relative p-8 rounded-md'}>*/}
-        //     {/*    <p className={'text-2xl text-center pb-6'}>{data.name} hava durumu </p>*/}
-        //     {/*    <div className={'flex justify-between text-center'}>*/}
-        //     {/*        <div>*/}
-        //     {/*            <p className='font-bold text-2xl'>{data.main.feels_like.toFixed(0)}&#176;</p>*/}
-        //     {/*            <p>Hissedilen</p>*/}
-        //     {/*        </div>*/}
-        //     {/*                            <div>*/}
-        //     {/*            <p className='font-bold text-2xl'>{data.main.humidity}%</p>*/}
-        //     {/*            <p>Nem</p>*/}
-        //     {/*        </div>*/}
-        //     {/*                            <div>*/}
-        //     {/*            <p className='font-bold text-2xl'>{data.wind.speed.toFixed(0)}</p>*/}
-        //     {/*             <p>Rüzgar</p>*/}
-        //     {/*        </div>*/}
-        //     {/*    </div>*/}
-        //     {/*</div>*/}
-        // </div>
-    // )
+
 }
 
 export default Weather
