@@ -6,6 +6,8 @@ import {BsSearch} from "react-icons/bs";
 import Weather from '../components/Weather';
 import Spinner from "../public/spinner.gif";
 import React from 'react'
+import { Analytics } from '@vercel/analytics/react';
+
 // import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { BrowserRouter, useNavigate } from 'react-router-dom';
 import { useRouter } from 'next/router';
@@ -132,6 +134,7 @@ export default function Home() {
                 </nav>
                 <div>
                 </div>
+              <Analytics/>
             </div>
           );
   }
