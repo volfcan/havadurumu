@@ -11,16 +11,13 @@ import { NextSeo } from 'next-seo';
 import {TbRosette} from "react-icons/tb";
 
 
-export default function Home() {
+const Home = ({children, iFrame = true}) => {
 
   const [city, setCity] = useState('')
   const [weather, setWeather] = useState([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  if (loading) {
-    return <Spinner/>
-  } else {
 
     return (
         <div>
@@ -94,15 +91,18 @@ export default function Home() {
                 </button>
               </form>
             </div>
-            {/*Weather*/}
+            <div>{children}</div>
+            {/*City*/}
             <div className='lg:mx-auto md:mx-auto  overflow-x-auto justify-around container'>
               {weather.data && <Weather data={weather}/>}
             </div>
+            {iFrame && (
             <div className='flex justify-center max-w-screen w-4/5 mx-auto'>
               <iframe width="650" height="450"
                       src="https://embed.windy.com/embed2.html?lat=39.675&lon=33.658&detailLat=40.290&detailLon=29.070&width=650&height=450&zoom=6&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=12&pressure=true&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1"
                       frameBorder="0"></iframe>
             </div>
+                )}
           </nav>
           <div>
           </div>
@@ -110,5 +110,6 @@ export default function Home() {
         </div>
     );
   }
-}
 
+
+export default Home;

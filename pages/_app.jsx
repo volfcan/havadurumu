@@ -7,8 +7,7 @@ export default function App({ Component, pageProps }) {
 // import { NextUIProvider } from "@nextui-org/react";
 //
 //
-// ex2367890*
-// port default function App({ Component, pageProps }) {
+// export default function App({ Component, pageProps }) {
 //   return(
 //   <NextUIProvider>
 //     <Component {...pageProps} />
