@@ -1,16 +1,3 @@
-import Head from 'next/head'
-import {useState, useEffect} from "react";
-import {BsSearch} from "react-icons/bs";
-import Weather from '@/pages/hava/[city]';
-import Spinner from "../public/spinner.gif";
-import React from 'react'
-import { Analytics } from '@vercel/analytics/react';
-import { useRouter, Router } from "next/router";
-
-import { NextSeo } from 'next-seo';
-import {TbRosette} from "react-icons/tb";
-
-
 export default function Home() {
 
   const [city, setCity] = useState('')
@@ -25,10 +12,7 @@ export default function Home() {
     return (
         <div>
           <Head>
-            <NextSeo
-            title="Hava durumu 15 günlük"
-            description="istanbul, bursa, ankara ve izmir için 15 günlük hava durumu tahminleri"
-            />
+            <title>Weather Next App</title>
             <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
             <link rel='icon' href='/favicon.ico'/>
           </Head>
@@ -51,15 +35,13 @@ export default function Home() {
               {/*</button>*/}
 
               <div className='mx-auto'>
+                <a href="#"
+                   className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium "
+                   aria-current="page">15 Günlük</a>
                 {/*<a href="#"*/}
-                {/*   className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium "*/}
-                {/*   aria-current="page"*/}
-                {/*>15 Günlük</a>*/}
-                {/*/!*<a href="#"*!/*/}
-                {/*/!*   className="whitespace-nowrap text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">10 Günlük</a>*!/*/}
-                {/*<a href="#"*/}
-                {/*   className="whitespace-nowrap text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"*/}
-                {/*>Bugün</a>*/}
+                {/*   className="whitespace-nowrap text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">10 Günlük</a>*/}
+                <a href="#"
+                   className="whitespace-nowrap text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Bugün</a>
               </div>
               <img className="h-8 w-8 mr-4"
                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
@@ -88,7 +70,7 @@ export default function Home() {
                       type="text"
                       placeholder="Şehir ara"/>
                 </div>
-                <button type="submit" >
+                <button type="submit" onClick={() => {router.push(`/hava/${city}`)}}>
                   <BsSearch size={20}/>
                 </button>
               </form>
@@ -97,11 +79,11 @@ export default function Home() {
             <div className='lg:mx-auto md:mx-auto  overflow-x-auto justify-around container'>
               {weather.data && <Weather data={weather}/>}
             </div>
-            <div className='flex justify-center max-w-screen w-4/5 mx-auto'>
-              <iframe width="650" height="450"
-                      src="https://embed.windy.com/embed2.html?lat=39.675&lon=33.658&detailLat=40.290&detailLon=29.070&width=650&height=450&zoom=6&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=12&pressure=true&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1"
-                      frameBorder="0"></iframe>
-            </div>
+            {/*<div className='flex shadow-md rounded-lg px-4 mx-auto'>*/}
+            {/*  <iframe width="650" height="450"*/}
+            {/*          src="https://embed.windy.com/embed2.html?lat=39.675&lon=33.658&detailLat=40.290&detailLon=29.070&width=650&height=450&zoom=6&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=12&pressure=true&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1"*/}
+            {/*          frameBorder="0"></iframe>*/}
+            {/*</div>*/}
           </nav>
           <div>
           </div>
