@@ -22,31 +22,26 @@ const Home = ({children, iFrame = true}) => {
     return (
         <div>
           <Head>
-            <NextSeo
-            title="Hava durumu 15 günlük"
-            description="istanbul, bursa, ankara ve izmir için 15 günlük hava durumu tahminleri"
-            canonical='https://www.havadurumu15.com/'
-            />
             <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
             <link rel='icon' href='/favicon.ico'/>
           </Head>
-          <nav className="bg-gradient-to-b from-gray-800 to-gray-600">
+          <nav className=" bg-gradient-to-b from-gray-800 to-gray-600">
             <div className="flex justify-start py-8">
-              {/*<button type="button"*/}
-              {/*        className="ml-4 lg:hidden md:hidden relative inline-flex items-center justify-start rounded-md pr-8 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"*/}
-              {/*        aria-controls="mobile-menu" aria-expanded="false">*/}
-              {/*  <span className="absolute -inset-0.5"></span>*/}
-              {/*  <span className="sr-only">Open main menu</span>*/}
-              {/*  <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"*/}
-              {/*       stroke="currentColor" aria-hidden="true">*/}
-              {/*    <path stroke-linecap="round" stroke-linejoin="round"*/}
-              {/*          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>*/}
-              {/*  </svg>*/}
-              {/*  <svg className="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"*/}
-              {/*       stroke="currentColor" aria-hidden="true">*/}
-              {/*    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>*/}
-              {/*  </svg>*/}
-              {/*</button>*/}
+              <button type="button"
+                      className="ml-4 lg:hidden md:hidden relative inline-flex items-center justify-start rounded-md pr-8 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                      aria-controls="mobile-menu" aria-expanded="false">
+                <span className="absolute -inset-0.5"></span>
+                <span className="sr-only">Open main menu</span>
+                <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+                <svg className="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
 
               <div className='mx-auto'>
                 {/*<a href="#"*/}
@@ -69,7 +64,7 @@ const Home = ({children, iFrame = true}) => {
                 </div>
               </div>
             </div>
-            <div className='flex py-12 px-4'>
+            <div className='flex py-12 px-4 mx-auto'>
               <h1 className='font-bold text-4xl text-center text-gray-200'>15 günlük hava durumu tahminlerini ve yağış
                 haritalarını keşfet</h1>
             </div>
@@ -100,6 +95,7 @@ const Home = ({children, iFrame = true}) => {
             <div className='flex justify-center max-w-screen w-4/5 mx-auto'>
               <iframe width="650" height="450"
                       src="https://embed.windy.com/embed2.html?lat=39.675&lon=33.658&detailLat=40.290&detailLon=29.070&width=650&height=450&zoom=6&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=12&pressure=true&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1"
+                      title="sıcaklık, nem, rüzgar yönü ve şiddeti, basınç, bulut hareketleri, yağış ihtimali ve benzer verileri gösteren etkileşimli embed harita"
                       frameBorder="0"></iframe>
             </div>
                 )}
