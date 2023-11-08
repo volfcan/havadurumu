@@ -108,6 +108,9 @@ const Weather = ({data}) => {
                     {/*Mobile View*/}
                     <div className="grid grid-cols-1 p-4 sm:grid-cols-1 gap-4 max-w-screen md:w-[90%] md:mx-auto">
                         {/*<p className='text-xl text-gray-200 font-medium'><span className='font-medium text-xl'>{city}</span> hava durumu</p>*/}
+                            <div className='text-white'>
+                                <span className='text-white font-medium capitalize text-l'>{city} </span>hava durumu
+                            </div>
                         <div className="flex bg-gray-700 items-center justify-between p-2 rounded-lg shadow-custom">
                             <div className="flex">
                                 <div className='w-[95px]'>

@@ -77,7 +77,7 @@ const Home = ({children, iFrame = true}) => {
                 <div>
                   <input
                       onChange={(e) => setCity(e.target.value)}
-                      className={'bg-transparent border-none text-gray-600 focus:outline-none text-sm'}
+                      className={'bg-transparent border-none text-gray-200 focus:outline-none text-sm'}
                       type="text"
                       placeholder="Şehir ara"/>
                 </div>
