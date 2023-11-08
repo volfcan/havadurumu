@@ -46,7 +46,7 @@ export default class MyApp extends App {
                   {
                     rel: 'güneş-icon',
                     href: '../icons/sunny.png'
-                  }
+                  },
                   {
                     rel: 'kar-tanesi-icon',
                     href: '../icons/snowflake.png'
