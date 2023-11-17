@@ -1,7 +1,5 @@
-
 import React, {useEffect, useState} from "react";
 import Image from "next/image";
-import rain from "../../icons/partly_sunny_rain.png";
 import cloud from "../../icons/cloud.png";
 import fewcloud from "../../icons/mostly_sunny.png"
 import midcloud from "../../icons/partly_sunny.png"
@@ -12,7 +10,9 @@ import moderaterain from "../../icons/rain_cloud.png"
 import heavyrain from "../../icons/thunder_cloud_and_rain.png"
 import {useRouter} from "next/router";
 import Home from '../home'
+
 import axiosRequest from "axios";
+
 
 
 const Weather = ({data}) => {
@@ -24,13 +24,12 @@ const Weather = ({data}) => {
     const axiosRequest = require('axios');
     try {
       const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`;
-      // console.log(url)
       const response = await axiosRequest.get(url);
       const url2 = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${response.data[0].lat}&lon=${response.data[0].lon}&units=metric&cnt=16&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`;
       const response2 = await axiosRequest.get(url2);
       setWeather(response2.data)
       await router.push(`/hava/${city}`);
-      // console.log(data)
+      console.log(response2)
     }
     catch (error) {
       console.error(error)
@@ -96,6 +95,8 @@ const Weather = ({data}) => {
                         return "az yağmur";
                     case "sky is clear":
                         return "güneşli";
+                    case "rain and snow":
+                        return "karlı";
                     default:
                         return desc;
                 }
@@ -103,7 +104,7 @@ const Weather = ({data}) => {
 
 
             return (
-                    <Home iFrame={false} >
+                    <Home iFrame={true} Cardd={false} >
                 <div>
                     {/*Mobile View*/}
                     <div className="grid grid-cols-1 p-4 sm:grid-cols-1 gap-4 max-w-screen md:w-[90%] md:mx-auto">
@@ -118,7 +119,7 @@ const Weather = ({data}) => {
                                 </div>
                                 <div className="max-w-[24px]">
                                     {description[0] === "sky is clear" &&
-                                        <Image src={sun} alt='sun-icon'/> || description[0] === "light rain" &&
+                                        <Image src={sun} alt='sun-icon'/> || description[0] === "rain and snow" && <Image src={snow} alt='snow-icon'/> || description[0]  === "light rain" &&
                                         <Image src={lightrain}
                                                alt='rain-cloud-sun-icon'/> || description[0] === "moderate rain" &&
                                         <Image src={moderaterain}
@@ -129,7 +130,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[0] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[0] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[0] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[0] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[0] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[0] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -145,7 +148,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[0]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -153,7 +156,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[0]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[0]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -178,7 +181,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[1] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[1] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[1] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[1] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[1] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[1] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -194,7 +199,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[1]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -202,7 +207,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[1]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[1]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -228,7 +233,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[2] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[2] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[2] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[2] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[2] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[2] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -244,7 +251,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[2]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -252,7 +259,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[2]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[2]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -278,7 +285,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[3] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[3] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[3] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[3] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[3] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[3] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -294,7 +303,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[3]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -302,7 +311,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[3]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[3]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -327,7 +336,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[4] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[4] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[4] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[4] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[4] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[4] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -343,7 +354,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[4]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -351,7 +362,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[4]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[4]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -376,7 +387,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[5] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[5] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[5] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[5] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[5] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[5] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -392,7 +405,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[5]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -400,7 +413,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[5]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[5]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -425,7 +438,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[6] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[6] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[6] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[6] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[6] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[6] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -441,7 +456,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[6]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -449,7 +464,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[6]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[6]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -474,7 +489,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[7] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[7] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[7] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[7] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[7] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[7] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -490,7 +507,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[7]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -498,7 +515,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[7]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[7]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -523,7 +540,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[8] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[8] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[8] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[8] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[8] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[8] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -539,7 +558,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[8]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -547,7 +566,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[8]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[8]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -572,7 +591,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[9] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[9] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[9] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[9] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[9] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[9] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -588,7 +609,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[9]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -596,7 +617,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[9]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[9]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -621,7 +642,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[10] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[10] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[10] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[10] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[10] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[10] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -637,7 +660,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[10]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -645,7 +668,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[10]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[10]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -670,7 +693,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[0] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[11] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[11] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[11] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[11] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[11] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -686,7 +711,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[11]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -694,7 +719,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[11]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[11]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -708,7 +733,7 @@ const Weather = ({data}) => {
                                 </div>
                                 <div className="max-w-[24px]">
                                     {description[12] === "sky is clear" &&
-                                        <Image src={sun} alt='sun-icon'/> || description[12] === "light rain" &&
+                                        <Image src={sun} alt='sun-icon'/> || description[12] === "rain and snow" && <Image src={snow} alt='snow-icon'/> || description[12] === "light rain" &&
                                         <Image src={lightrain}
                                                alt='rain-cloud-sun-icon'/> || description[12] === "moderate rain" &&
                                         <Image src={moderaterain}
@@ -719,7 +744,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[12] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[12] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[12] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[12] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[12] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[12] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -735,7 +762,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[12]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -743,7 +770,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[12]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[12]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -768,8 +795,10 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[13] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[13] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[13] === "Snow" &&
-                                        <Image className="w-3/4" src={snow} alt="snow-icon"/>}
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[13] === "light snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[13] === "rain and snow" &&
+                                        <Image  src={snow} alt="snow-icon"/> || description[13] === "snow" &&
+                                        <Image  src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
                                     <span
@@ -784,7 +813,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[13]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -792,7 +821,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[13]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[13]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -806,7 +835,7 @@ const Weather = ({data}) => {
                                 </div>
                                 <div className="max-w-[24px]">
                                     {description[14] === "sky is clear" &&
-                                        <Image src={sun} alt='sun-icon'/> || description[14] === "light rain" &&
+                                        <Image src={sun} alt='sun-icon'/> || description[14] === "rain and snow" && <Image src={snow} alt='snow-icon'/> || description[14] === "light rain" &&
                                         <Image src={lightrain}
                                                alt='rain-cloud-sun-icon'/> || description[14] === "moderate rain" &&
                                         <Image src={moderaterain}
@@ -817,7 +846,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[14] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[14] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[14] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[14] === "light snow" &&
+                                        <Image className="w-3/4" src={snow} alt="snow-icon"/> || description[14] === "rain and snow" &&
+                                        <Image className="w-3/4" src={snow} alt="snow-icon"/> || description[14] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -833,7 +864,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[14]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -841,7 +872,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[14]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[14]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>
@@ -866,7 +897,9 @@ const Weather = ({data}) => {
                                         <Image src={midcloud}
                                                alt="cloud-sun"/> || description[15] === "scattered clouds" &&
                                         <Image src={fewcloud} alt="sun"/> || description[15] === "few clouds" &&
-                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[15] === "Snow" &&
+                                        <Image src={fewcloud} alt="sun-cloud-icon"/> || description[15] === "light snow" &&
+                                        <Image className="w-3/4" src={snow} alt="snow-icon"/> || description[15] === "rain and snow" &&
+                                        <Image className="w-3/4" src={snow} alt="snow-icon"/> || description[15] === "Snow" &&
                                         <Image className="w-3/4" src={snow} alt="snow-icon"/>}
                                 </div>
                                 <div className='pl-2 md:pl-12 md:whitespace-nowrap'>
@@ -882,7 +915,7 @@ const Weather = ({data}) => {
                                         <div className="uppercase text-xs font-medium text-gray-400">Gün:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>{tempday[15]}<span
-                                            className='text-xs align-top'>°C</span>
+                                            className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                     <div>
@@ -890,7 +923,7 @@ const Weather = ({data}) => {
                                             gece:
                                         </div>
                                         <div className='font-medium text-md text-gray-200'>
-                                            {tempnight[15]}<span className='text-xs align-top'>°C</span>
+                                            {tempnight[15]}<span className='text-xs align-text-top'>°C</span>
                                         </div>
                                     </div>
                                 </div>

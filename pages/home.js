@@ -6,12 +6,14 @@ import Spinner from "../public/spinner.gif";
 import React from 'react'
 import { Analytics } from '@vercel/analytics/react';
 import { useRouter, Router } from "next/router";
-
 import { NextSeo } from 'next-seo';
 import {TbRosette} from "react-icons/tb";
+import App from "@/components/Weather3";
+import Logo from "@/public/logo4x.png"
+import Image from 'next/image'
 
 
-const Home = ({children, iFrame = true}) => {
+const Home = ({children, Cardd = true, iFrame = true}) => {
 
   const [city, setCity] = useState('')
   const [weather, setWeather] = useState([]);
@@ -54,8 +56,8 @@ const Home = ({children, iFrame = true}) => {
                 {/*   className="whitespace-nowrap text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"*/}
                 {/*>Bugün</a>*/}
               </div>
-              <img className="h-8 w-8 mr-4"
-                   src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+              <Image className="h-8 w-8 mr-4"
+                   src={Logo}
                    alt="Your Company"/>
             </div>
             <div className="flex lg:px-4 sm:px-6">
@@ -64,20 +66,21 @@ const Home = ({children, iFrame = true}) => {
                 </div>
               </div>
             </div>
-            <div className='flex py-12 px-4 mx-auto'>
+            <div className='py-12 px-4 mx-auto'>
               <h1 className='font-bold text-4xl text-center text-gray-200'>15 günlük hava durumu tahminlerini ve yağış
                 haritalarını keşfet</h1>
             </div>
+
             <div className={'relative flex justify-between items-center m-auto p-12 text-white z-10'}>
               <form onSubmit={(e)=> {
                 e.preventDefault()
                 router.push(`/hava/${city}`)
               }}
-                    className={'flex justify-between w-full items-center m-auto p-1 bg-transparent border-2 border-gray-400 text-white rounded-2xl'}>
+                    className={'flex justify-between w-[80%] lg:w-[40%] items-center m-auto p-1 bg-transparent border-2 border-gray-400 text-white rounded-2xl'}>
                 <div>
                   <input
                       onChange={(e) => setCity(e.target.value)}
-                      className={'bg-transparent border-none text-gray-200 focus:outline-none text-sm'}
+                      className={' bg-transparent border-none text-gray-200 focus:outline-none text-sm'}
                       type="text"
                       placeholder="Şehir ara"/>
                 </div>
@@ -86,10 +89,14 @@ const Home = ({children, iFrame = true}) => {
                 </button>
               </form>
             </div>
+            {Cardd && (
+              <App/>
+            )}
             <div>{children}</div>
             {/*City*/}
             <div className='lg:mx-auto md:mx-auto  overflow-x-auto justify-around container'>
               {weather.data && <Weather data={weather}/>}
+
             </div>
             {iFrame && (
             <div className='flex justify-center max-w-screen w-4/5 mx-auto'>
